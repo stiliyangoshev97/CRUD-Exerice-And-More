@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title></title>
+</head>
+<body>
+    <form method="POST" style="margin: 100px 400px 100px 400px; border: 1px solid black; padding: 25px 25px 25px 25px;">
+    	{% csrf_token %}
+    	{{ form }}
+    	<input class="btn btn-primary" type="submit" value="Update" style="margin-top: 12px;">
+    </form>
+    <div style="margin: 1px 400px 1px 400px; border: 1px solid black; padding: 25px 25px 25px 25px;"><a href="{% url 'delete_book' pk=book.pk %}"><button class="btn btn-danger" type="submit" value="Delete" style="margin-top: 12px;">Delete</button></a></div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title></title>
+</head>
+<body>
+    <div style="margin: 100px 400px 100px 400px; border: 1px solid black; padding: 25px 25px 25px 25px;">
+
+    	<form method="POST" action="{% url 'form_calculator' %}">
+    		{% csrf_token %}
+    		{{ form }}
+    		<input type="submit" class="btn btn-primary" value="submit" name="submit">
+    	</form>
+
+    	{% if submitbutton == 'submit' %}
+
+    	<p>First number is: {{ number_one }}</p>
+    	<p>Second number is: {{ number_two }}</p>
+
+    	<p>Result is: {{ result|floatformat:2  }}</p>
+
+    	{% endif %}
+    	
+    </div>
+</body>
+</html>

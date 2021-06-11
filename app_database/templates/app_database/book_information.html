@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title></title>
+</head>
+<body>
+    <div style="margin: 100px 400px 100px 400px; border: 1px solid black; padding: 25px 25px 25px 25px;">
+
+        <p>Book pages: {{ book_pages }}</p>
+        <p>Book description: {{ book_description }}</p>
+        <p>Book is liked: {{ book_is_liked }}</p> <a href="{% url 'book_like' book.pk %}">
+        {% if book_is_liked is False %}
+            <button class="btn btn-primary">Like book</button></a> 
+        {% else %}
+
+            <a href="{% url 'book_unlike' book.pk %}"><button class="btn btn-primary">Unlike book</button></a> 
+
+
+        {% endif %}
+
+       
+
+    	
+    </div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title></title>
+</head>
+<body>
+	<!-- For these to work fine we must access an object so we have its id in the browser address section-->
+	<h1>Item {{ person.first_name }} </h1>
+	<a href="{% url 'update' pk=person.pk %}">Update</a>
+	<a href="{% url 'delete' pk=person.pk %}">Delete</a><br>
+</body>
+</html>

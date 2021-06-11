@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title></title>
+</head>
+<body>
+    <div style="margin: 100px 400px 100px 400px; border: 1px solid black; padding: 25px 25px 25px 25px;">
+
+        <p>Books written by: <b>{{ author }}</b></p>
+    	{% for book in books %}
+    	    <p><a href="{% url 'book_information' book.pk %}"><i>{{book.title}}</i></a></p>
+    	{% endfor %}
+
+    	
+    </div>
+</body>
+</html>

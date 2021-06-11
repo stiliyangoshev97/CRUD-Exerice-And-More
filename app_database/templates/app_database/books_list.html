@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title></title>
+</head>
+<body>
+    <div style="margin: 100px 400px 100px 400px; border: 1px solid black; padding: 25px 25px 25px 25px;">
+
+    	{% for book in books %}
+    	    <div style="border: 1px solid black; padding: 25px 25px 25px 25px; margin-bottom: 10px;"><a href="{% url 'update_book' pk=book.pk %}"><p>{{ book.title }} - <a href="{% url 'delete_book' pk=book.pk %}"><button class="btn btn-danger">Delete</button></a></p></a></div>
+    	{% endfor %}
+
+
+    	
+    	
+    </div>
+</body>
+</html>

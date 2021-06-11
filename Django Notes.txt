@@ -1,0 +1,103 @@
+Get a specific objects
+all_people = Person.objects.get(first_name="John")
+
+
+Get all objects
+all_people = Person.objects.all()
+
+Filter Objects
+all_people = Person.objects.filter(age=35)
+
+Field lookups
+all_people = Person.objects.filter(age__lte=35)
+
+
+------------------
+ForeignKey - Many-to-one relationship; requires two positional arguments: the class to which the model is related and the on_delete option
+
+
+ManyToManyField - Many-to-many relationship; requires a positional argument: the class to which the model is related
+
+
+OneToOneField - One-to-one relationship; similar to ForeignKey with unique=True, but the "reverse" side of the relation will return a single object
+
+---------------------------------
+
+CRUD
+
+---------------------------------
+
+def create_book(request):
+	if request.method == 'GET':
+		form = BookForm()
+		context = {'form': form}
+		return render(request, 'app_database/create_book.html', context)
+	else:
+		form = BookForm(request.POST)
+		if form.is_valid():
+			book = form.save()
+			book.save()
+			return redirect('index')
+
+
+def update_book(request, pk):
+	book = Book.objects.get(pk=pk)
+	if request.method == 'GET':
+		form = BookForm(instance=book)
+		context = {'form': form, 'book': book}
+		return render(request, 'app_database/update_book.html', context)
+	else:
+		form = BookForm(request.POST, instance = book)
+		book = form.save()
+		book.save()
+		return redirect('index')
+
+
+def delete_book(request, pk):
+	book = Book.objects.get(pk=pk)
+
+	book.delete()
+	context = {'book': book}
+
+	return render(request, 'app_database/index.html', context)
+
+
+-------------------------------
+
+Getting data from Forms
+
+-------------------------------
+
+form= UserForm(request.POST or None)
+    if form.is_valid():
+        data= form.cleaned_data.get("form_field")
+
+
+In the template
+
+<form method="POST" action="{% url 'form_calculator' %}">
+    		{% csrf_token %}
+    		{{ form }}
+    		<input type="submit" class="btn btn-primary" value="submit" name="submit">
+    	</form>
+
+    	{% if submitbutton == 'submit' %}
+
+    	<p>Result is: {{ result|floatformat:2  }}</p>
+
+    	{% endif %}
+
+forms.py + Validation in Forms rewriting the def clean() method
+from django.core.exceptions import ValidationError
+
+class FormCalculator(forms.Form):
+	number_one = forms.IntegerField()
+	widgets = {
+	'number_one': forms.NumberInput(attrs={'class': 'form-control'}),
+	}
+	def clean(self):
+		if not isinstance(self.cleaned_data['number_one'], int):
+			raise ValidationError('Number must be integer')
+                if self.cleaned_data['number_one'] < 0:
+			raise ValidationError('Number one cannot be less than zero!')
+		return self.cleaned_data
